@@ -9,27 +9,43 @@ import { budgetAlertStore } from '../stores/budgetAlertStore'; // Importar el st
 const BudgetAlert = () => {
     const userSettings = useStore(userSettingsStore);
     const transactions = useStore(transactionsStore);
+    console.log('transactions', transactions)
 
     // Instructions:
     // - Calculate the total expenses from the transactions.
-    const totalExpense = 0; // Replace with the total expenses calculation.
+    const totalExpense = transactions.reduce((acc, current) => acc + current.amount, 0)
 
     // Determine if the budget has been exceeded
-    const budgetExceeded = false; // Replace with a comparison of totalExpense and userSettings.totalBudgetLimit
+    const budgetExceeded = totalExpense > userSettings.totalBudgetLimit
+    console.log('budgetExceeded', budgetExceeded)
 
     // Use the useEffect hook to update the budgetAlertStore when the budget is exceeded
     useEffect(() => {
-        // Instructions:
-        // - If the budget has been exceeded, set the `isVisible` property in the `budgetAlertStore` to true and provide a warning message.
-        // - If the budget has not been exceeded, set `isVisible` to false and clear the message.
-    }, [budgetExceeded, userSettings.totalBudgetLimit]);
+        budgetAlertStore.set(
+            budgetExceeded ?
+                {
+                    isVisible: true,
+                    message: "You have exceeded your budget",
+                    severity: 'error',
+                }
+                :
+                {
+                    isVisible: false,
+                    message: '',
+                    severity: '',
+                }
+        )
+    }, [budgetExceeded, userSettings.totalBudgetLimit, totalExpense]);
 
     return (
-        // Conditional rendering of the alert
-        // Instructions:
-        // - If the budget is exceeded, return an `Alert` component with the appropriate message and severity.
-        null // Replace with conditional rendering logic
-    );
+        <>
+            {budgetAlertStore.isVisible ? (
+                <Alert severity={budgetAlertStore.severity}>
+                    {budgetAlertStore.message}
+                </Alert>
+            ) : null}
+        </>
+    )
 };
 
 export default BudgetAlert;
