@@ -1,33 +1,43 @@
 import React from 'react';
 import { Box, Typography, Paper, IconButton, InputBase, Button } from '@mui/material';
+import bgMaps from '../assets/bgmaps.png';
+import { Facebook, Twitter, Instagram, Search } from '@mui/icons-material';
 
 const Footer = () => {
     return (
-        <Box component="footer">
+        <Box
+            component="footer"
+            className="bg-cover bg-center p-6 h-64 mt-2"
+            style={{ backgroundImage: `url(${bgMaps})` }}
+        >
             {/* Search bar */}
-            <Box>
+            <Box className="flex justify-center mt-2 mb-4">
                 <Paper component="form">
                     <IconButton aria-label="search">
-                        {/* Add the search icon here */}
+                        <Search />
                     </IconButton>
                     <InputBase placeholder="Find your branch..." />
                     <Button type="submit">Search</Button>
                 </Paper>
             </Box>
 
-            <Typography>
-                © {new Date().getFullYear()} Personal Finance Assistant
-            </Typography>
+            <Box className="flex justify-center mt-2 mb-4">
+                <Typography>
+                    © {new Date().getFullYear()} Personal Finance Assistant
+                </Typography>
+            </Box>
 
             {/* Social media icons */}
-            {/* Instructions:
-                - Add IconButtons for Facebook, Twitter, and Instagram.
-                - Ensure each icon button links to the appropriate social media page.
-                - Use the respective Material UI icons for Facebook, Twitter, and Instagram. */}
-            <Box>
-                {/* IconButton for Facebook */}
-                {/* IconButton for Twitter */}
-                {/* IconButton for Instagram */}
+            <Box className="flex justify-center mt-2 mb-4">
+                <IconButton component="a" href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <Facebook />
+                </IconButton>
+                <IconButton component="a" href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <Twitter />
+                </IconButton>
+                <IconButton component="a" href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <Instagram />
+                </IconButton>
             </Box>
         </Box>
     );

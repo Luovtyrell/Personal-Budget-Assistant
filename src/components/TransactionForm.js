@@ -16,37 +16,64 @@ function TransactionForm({ transactionToEdit, onClose }) {
     const [type, setType] = useState('expense');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+    const [errorMessage, setErrorMessage] = useState('')
 
     // Implement the function to assign a category based on description keywords
     const assignCategory = (desc) => {
-        // Instructions: 
-        // - Loop through `categoryKeywords` to find matching keywords
-        // - If a keyword is found in the description, return the category
-        // - Return 'Other Expenses' if no category is found
-
+        for (const [category, keywords] of Object.entries(categoryKeywords)) {
+            if (keywords.some(keyword => desc.toLowerCase().includes(keyword.toLowerCase()))) {
+                return category;
+            }
+        }
         return 'Other Expenses';
     };
 
     // Auto-assign a category if adding a new transaction
     useEffect(() => {
         if (!transactionToEdit) {
-            // Instructions: 
-            // - Call the `assignCategory` function to determine the category based on the description
-            // - Then, update the category state with the result
+            if (description) {
+                const assignedCategory = assignCategory(description);
+                setCategory(assignedCategory);
+            }
         }
-
-        // Instructions: Add the proper dependencies to the useEffect hook
-    }, []);
+    }, [transactionToEdit, description]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Instructions:
-        // - Validate that all fields are filled in.
-        // - If editing, update the transaction in the store.
-        // - If adding a new transaction, create it and save it to the store.
-        // - The transaction type should be either "income" or "expense".
-        // - Ensure the transaction has the following structure: { id, description, amount, type, category, date }
+        if (!description || !amount || !category || !type) {
+            setErrorMessage('Please fill in all fields.');
+            return;
+        }
+
+        const transaction = {
+            id: transactionToEdit ? transactionToEdit.id : Date.now(),
+            description,
+            amount: parseFloat(amount),
+            type,
+            category,
+            date,
+        };
+
+
+        if (transactionToEdit) {
+            transactionsStore.update((currentTransactions) =>
+                currentTransactions.map((t) =>
+                    t.id === transactionToEdit.id ? transaction : t
+                )
+            );
+        } else {
+            transactionsStore.set((currentTransactions) => [...currentTransactions, transaction]);
+        }
+
+        setDescription('');
+        setAmount('');
+        setType('expense');
+        setCategory('');
+        setDate(new Date().toISOString().split('T')[0]);
+        setErrorMessage('');
+        onClose();
     };
+
 
     return (
         <Dialog open={true} onClose={onClose}>
@@ -105,13 +132,31 @@ function TransactionForm({ transactionToEdit, onClose }) {
                                     name="category"
                                     inputProps={{ name: 'filterCategoryForm' }}
                                 >
-                                    {/* Instructions: Use the `allCategories` imported file to render the categories as menu items */}
+                                    <MenuItem value="" disabled>Select Category</MenuItem>
+                                    {allCategories.map((cat) => (
+                                        <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+                                    ))}
                                     <MenuItem value="Other Expenses">Other Expenses</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
-                        {/* Fill in the remaining field for date type */}
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                label="Date"
+                                type="date"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                fullWidth
+                                margin="normal"
+                                required
+                                name="date"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </Grid>
                     </Grid>
+                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 </DialogContent>
                 <DialogActions>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', p: 2 }}>

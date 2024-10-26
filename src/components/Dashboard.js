@@ -80,12 +80,14 @@ function Dashboard() {
                 */}
 
                 {/* Charts Section */}
+                <AnalysisGraph />
                 {/* Instructions:
                     - Use the `AnalysisGraph` component to show a breakdown of income and expenses by category.
                     - Use the `BalanceOverTime` component to show the user's balance over time.
                 */}
 
                 {/* Recent Transactions Section */}
+                <RecentTransactions transactions={transactions} />
                 {/* Instructions:
                     - Display a list or table of recent transactions using the `RecentTransactions` component.
                     - Ensure that each transaction shows key details such as description, amount, type, and date.

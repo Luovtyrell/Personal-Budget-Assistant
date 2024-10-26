@@ -17,6 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute'; // Import for route pr
 import { authStore } from './stores/authStore'; // Import auth store for authentication state
 import { useStore } from '@nanostores/react'; // Nanostores to track auth
 import BudgetAlert from './components/BudgetAlert'; // Importar BudgetAlert
+import TransactionForm from './components/TransactionForm'
 import './App.css'
 
 function App() {
@@ -53,7 +54,7 @@ function App() {
             minHeight: '100vh', // Ensures footer is at the bottom
           }}
         >
-          <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+          <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} isAuthenticated={auth.isAuthenticated}  />
           <Container sx={{ flex: 1, mt: 4 }}>
             <BudgetAlert /> {/* Mostrar BudgetAlert aquí */}
             <Routes>
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/analysis" element={<Analysis />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/support" element={<SupportPage />} />
+                <Route path="/transactionsForm" element={<TransactionForm />} />
               </Route>
               {/* Public routes */}
               <Route path="/login" element={<LoginPage />} />

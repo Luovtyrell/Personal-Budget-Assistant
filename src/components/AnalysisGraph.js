@@ -10,6 +10,7 @@ import {
     Legend,
     ResponsiveContainer,
 } from 'recharts';
+import { Grid, Typography, Paper } from '@mui/material';
 
 function AnalysisGraph() {
     const transactions = useStore(transactionsStore);
@@ -28,16 +29,23 @@ function AnalysisGraph() {
     const data = []; // Add logic to calculate income and expense for each category
 
     return (
-        <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={data}>
-                <XAxis dataKey="category" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="Income" stackId="a" fill="#82ca9d" />
-                <Bar dataKey="Expense" stackId="a" fill="#8884d8" />
-            </BarChart>
-        </ResponsiveContainer>
+        <Grid item xs={12} md={4} sx={{ mt: 4 }}>
+            <Paper sx={{ padding: 2, boxShadow: 3, borderRadius: 2 }}>
+                <Typography variant="h6" gutterBottom>
+                    Income vs. Expenses by Category
+                </Typography>
+                <ResponsiveContainer width="100%" height={400}>
+                    <BarChart data={data}>
+                        <XAxis dataKey="category" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="Income" stackId="a" fill="#82ca9d" />
+                        <Bar dataKey="Expense" stackId="a" fill="#8884d8" />
+                    </BarChart>
+                </ResponsiveContainer>
+            </Paper>
+        </Grid>
     );
 }
 
