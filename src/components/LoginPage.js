@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../stores/authStore';
 import {
     Box,
@@ -25,20 +25,26 @@ function LoginPage() {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        // Validate that fields are not empty
-        // Instructions:
-        // - Check if the email and password fields are filled.
         if (!email || !password) {
-            // - If either is empty, set an appropriate error message.
+            setError('Email and password are required.');
             return;
         }
 
-        // Validate credentials
-        // Instructions:
-        // - Check if the entered credentials match the default credentials or the stored user credentials.
-        // - If valid, call the `login` function and navigate to the homepage.
-        // - If invalid, set an error message.
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        // Validar credenciales
+        if (
+            (email === defaultCredentials.email && password === defaultCredentials.password) ||
+            (storedUser && email === storedUser.email && password === storedUser.password)
+        ) {
+            const userData = { email };
+            login(userData);
+            navigate('/');
+        } else {
+            setError('Invalid email or password.');
+        }
     };
+
 
     const handleShowDefaultCredentials = () => {
         // Show default credentials in case the user requests it
@@ -48,41 +54,58 @@ function LoginPage() {
     };
 
     return (
-        <Box sx={{ maxWidth: 400, mx: 'auto', mt: 8, p: 2, border: '1px solid #ddd', borderRadius: 2 }}>
+        <Box sx={{ maxWidth: 400, mx: 'auto', mt: 8, p: 2, border: '1px solid #ddd', borderRadius: 2, mb: 4 }}>
             <Typography variant="h4" gutterBottom>
                 Login
             </Typography>
             <form onSubmit={handleLogin}>
-                <TextField
-                    label="Email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    fullWidth
-                    margin="normal"
-                />
-                <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    sx={{ mt: 2 }}
-                >
-                    Login
-                </Button>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            sx={{ mt: 2 }}
+                        >
+                            Login
+                        </Button>
+                    </Grid>
+                </Grid>
             </form>
 
             {/* Show error message when applicable */}
-            {/* - Use the Alert component to display the error message if one exists. */}
-            {/* - Ensure that registration and forgot password options are displayed below the error message if present. */}
+            {error && (
+                <Alert severity="error" sx={{ mt: 2 }}>
+                    {error}
+                </Alert>
+            )}
+            <Box sx={{ mt: 2 }}>
+                <Link to="/register" style={{ textDecoration: 'none' }}>
+                    <Button variant="text">Don't have an account? Register</Button>
+                </Link>
+            </Box>
+
+            {/* Show default credentials button */}
+            <Button onClick={handleShowDefaultCredentials}>
+                Show Default Credentials
+            </Button>
 
             {showCredentials && (
                 <Alert severity="info" sx={{ mt: 2 }}>

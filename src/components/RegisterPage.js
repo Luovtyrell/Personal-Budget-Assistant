@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Box, Button, TextField, Typography, Alert } from '@mui/material';
-import { login } from '../stores/authStore'; 
+import { login } from '../stores/authStore';
 
 function RegisterPage() {
     const [email, setEmail] = useState('');
@@ -14,27 +14,33 @@ function RegisterPage() {
     const handleRegister = (e) => {
         e.preventDefault();
 
-        // Instructions:
-
         // Validate that all fields (email, password, confirmPassword) are filled.
-        // - If any field is empty, display an error message.
+        if (!email || !password || !confirmPassword) {
+            setError('All fields are required.');
+            return;
+        }
 
         // Check if the passwords match.
-        // - If the passwords do not match, set an appropriate error message.
+        if (password !== confirmPassword) {
+            setError('Passwords do not match.');
+            return;
+        }
 
         // Check if the email is already registered in localStorage.
-        // - Retrieve the existing user from localStorage and verify if the entered email already exists.
-        // - If the email exists, set an error message.
+        const existingUser = JSON.parse(localStorage.getItem('user'));
+        if (existingUser && existingUser.email === email) {
+            setError('Email is already registered.');
+            return;
+        }
 
         // Save the new user's data to localStorage.
-        // - If validation passes, store the new user's email and password in localStorage.
+        const newUser = { email, password };
+        localStorage.setItem('user', JSON.stringify(newUser));
 
         // Automatically log the user in after successful registration.
-        // - Call the `login` function to set the authenticated user in the store.
+        login(newUser);
 
         // Redirect the user to the dashboard.
-        // - After successful registration and login, redirect the user to the home/dashboard page.
-
         setSuccess(true);
         setTimeout(() => {
             navigate('/');
@@ -86,6 +92,13 @@ function RegisterPage() {
                 >
                     Register
                 </Button>
+
+                <Box sx={{ mt: 2 }}>
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                        <Button variant="text">Have an account? Login</Button>
+                    </Link>
+                </Box>
+
             </form>
 
             {error && (
