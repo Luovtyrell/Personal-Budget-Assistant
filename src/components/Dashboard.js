@@ -58,7 +58,6 @@ function Dashboard() {
                                 Total Expenses
                             </Typography>
                             <Typography variant="h5" data-testid="total-expenses">
-                                {/* Show total expenses */}
                             </Typography>
                         </Paper>
                     </Grid>

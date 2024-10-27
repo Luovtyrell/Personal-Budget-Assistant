@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Profiler, Suspense } from 'react';
 import { Box, Typography, CircularProgress, Paper, Avatar, List, ListItem, ListItemAvatar, ListItemText, TextField, Button } from '@mui/material';
 import { onRenderCallback } from '../utils/onRenderCallback';
+import ContactList from './ContactList';
 
 function SupportPage() {
   const [users, setUsers] = useState([]);
@@ -58,52 +59,34 @@ function SupportPage() {
   }
 
   return (
-    <>
-      <Profiler id="SupportPage" onRender={onRenderCallback}>
-        <Box sx={{ mt: 4, p: { xs: 2, md: 4 }, bgcolor: 'background.default' }}>
-          <Typography variant="h4" gutterBottom color="primary">
-            Support Contacts
-          </Typography>
+    <Profiler id="SupportPage" onRender={onRenderCallback}>
+      <Box sx={{ mt: 4, p: { xs: 2, md: 4 }, bgcolor: 'background.default' }}>
+        <Typography variant="h4" gutterBottom color="primary">
+          Support Contacts
+        </Typography>
 
-          {/* Search bar */}
-          <TextField
-            label="Search by Name"
-            variant="outlined"
-            fullWidth
-            value={searchTerm}
-            onChange={handleSearchChange}
-            sx={{ mb: 4 }}
-          />
+        {/* Search bar */}
+        <TextField
+          label="Search by Name"
+          variant="outlined"
+          fullWidth
+          value={searchTerm}
+          onChange={handleSearchChange}
+          sx={{ mb: 4 }}
+        />
 
-          {/* Support contact list */}
-          <Suspense fallback={<CircularProgress />}>
-            <Paper sx={{ p: 3, borderRadius: 2, boxShadow: 3 }}>
-              <List>
-                {filteredUsers.map(user => (
-                  <ListItem key={user.id} sx={{ mb: 2, }}>
-                    <ListItemAvatar>
-                      <Avatar src={`https://i.pravatar.cc/150?img=${user.id}`} alt={user.name} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={`${user.name} - ${user.email}`}
-                      secondary={`Phone: ${user.phone} | Company: ${user.company.name}`}
-                    />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      href={`mailto:${user.email}`}
-                      sx={{ ml: 2 }}
-                    >
-                      Contact
-                    </Button>
-                  </ListItem>
-                ))}
-              </List>
-            </Paper>
-          </Suspense>
-        </Box>
-      </Profiler>
-    </>
+        {/* Support contact list */}
+        <Suspense fallback={<CircularProgress />}>
+          <Paper sx={{ p: 3, borderRadius: 2, boxShadow: 3 }}>
+            <List>
+              {filteredUsers.map(user => (
+                <ContactList key={user.id} user={user} /> 
+              ))}
+            </List>
+          </Paper>
+        </Suspense>
+      </Box>
+    </Profiler>
   );
 }
 
