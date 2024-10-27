@@ -8,13 +8,11 @@ import {
     TableRow,
     Paper,
 } from '@mui/material';
+import { transactionsStore } from '../stores/transactionStore';
+import { useStore } from '@nanostores/react';
 
-function RecentTransactions({ transactions }) {
-
-    // Recent transactions
-    // Instructions:
-    // - Sort the transactions by date, showing the most recent first.
-    // - Extract only the last 5 transactions for display.
+function RecentTransactions() {
+    const transactions = useStore(transactionsStore);
 
     const recentTransactions = transactions
         .slice()

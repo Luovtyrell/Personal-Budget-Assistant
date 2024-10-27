@@ -15,18 +15,31 @@ import { Grid, Typography, Paper } from '@mui/material';
 function AnalysisGraph() {
     const transactions = useStore(transactionsStore);
 
-    // Unique categories
-    // Instructions:
-    // - Extract unique categories from the transactions
-    // - This should gather all the categories used in the 'category' field of the transactions
-    const categories = []; // Add logic to extract unique categories from transactions
+    const categoriesSet = new Set();
+    transactions.forEach(transaction => {
+        if (transaction.category) {
+            categoriesSet.add(transaction.category);
+        }
+    });
+    const categories = Array.from(categoriesSet);
 
-    // Chart data
-    // Instructions:
-    // - Aggregate income and expense data for each category
-    // - For each category, calculate the total 'income' and 'expense'
-    // - The data array should return an object like this for each category: { category, Income, Expense }
-    const data = []; // Add logic to calculate income and expense for each category
+    const data = categories.map(category => {
+        const categoryTransactions = transactions.filter(transaction => transaction.category === category);
+
+        const totalIncome = categoryTransactions
+            .filter(transaction => transaction.type === 'income')
+            .reduce((acc, curr) => acc + curr.amount, 0);
+
+        const totalExpense = categoryTransactions
+            .filter(transaction => transaction.type === 'expense')
+            .reduce((acc, curr) => acc + curr.amount, 0);
+
+        return {
+            category,
+            Income: totalIncome,
+            Expense: totalExpense,
+        };
+    });
 
     return (
         <Grid item xs={12} md={4} sx={{ mt: 4 }}>

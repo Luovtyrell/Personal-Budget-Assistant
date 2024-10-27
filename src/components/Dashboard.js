@@ -16,10 +16,15 @@ const RecentTransactions = React.lazy(() => import('./RecentTransactions'));
 function Dashboard() {
     const transactions = useStore(transactionsStore);
 
-    // Replace the placeholder values with calculations for total income, total expenses, and balance.
-    const totalIncome = 0; // Calculate total income from transactions
-    const totalExpense = 0; // Calculate total expenses from transactions
-    const balance = 0; // Calculate balance based on total income and expenses
+    const totalIncome = transactions
+        .filter(transaction => transaction.type === 'income')
+        .reduce((sum, transaction) => sum + transaction.amount, 0);
+    
+    const totalExpense = transactions
+        .filter(transaction => transaction.type === 'expense')
+        .reduce((sum, transaction) => sum + transaction.amount, 0);
+    
+    const balance = totalIncome - totalExpense;
 
     return (
         <Profiler id="Dashboard" onRender={onRenderCallback}>
