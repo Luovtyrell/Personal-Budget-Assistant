@@ -4,9 +4,9 @@ import { transactionsStore } from '../stores/transactionStore';
 import { CircularProgress, Typography, Box } from '@mui/material';
 
 function Recommendations() {
-    const transactions = useStore(transactionsStore); 
-    const [loading, setLoading] = useState(true); 
-    const [error, setError] = useState(null); 
+    const transactions = useStore(transactionsStore);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         // Simulate data loading and handle possible errors
@@ -22,13 +22,24 @@ function Recommendations() {
     }, []);
 
     if (loading) {
-        // Show a loading indicator while data is being fetched
-        return <CircularProgress />;
+        return (
+            <>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <CircularProgress />
+                </Box>
+            </>)
     }
 
     if (error) {
-        // Display an error message if something goes wrong
-        return <Typography color="error">{error}</Typography>;
+        return (
+            <>
+                <Box sx={{ textAlign: 'center', mt: 4 }}>
+                    <Typography variant="h6" color="error">
+                        {error}
+                    </Typography>
+                </Box>
+            </>
+        )
     }
 
     // Implement logic to compare expenses between months

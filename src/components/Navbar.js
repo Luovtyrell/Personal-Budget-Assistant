@@ -67,15 +67,17 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated }) => {
                             </Badge>
                         </IconButton>
                     </Box>
-                    
+
                     {/* User avatar with tooltip */}
-                    <Tooltip title={user?.email || "User"} arrow>
-                        <Avatar
-                            alt={user?.email || "User"}
-                            src={user?.avatarUrl || `https://i.pravatar.cc/150?img=${user?.id || 21}`}
-                            sx={{ width: 40, height: 40, marginLeft: 2 }}
-                        />
-                    </Tooltip>
+                    {isAuthenticated && (
+                        <Tooltip title={user?.email || "User"} arrow>
+                            <Avatar
+                                alt={user?.email || "User"}
+                                src={user?.avatarUrl || `https://i.pravatar.cc/150?img=${user?.id || 21}`}
+                                sx={{ width: 40, height: 40, marginLeft: 2 }}
+                            />
+                        </Tooltip>
+                    )}
                 </Toolbar>
             </AppBar>
 

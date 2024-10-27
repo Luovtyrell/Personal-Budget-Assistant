@@ -72,18 +72,19 @@ function Dashboard() {
                         </Paper>
                     </Grid>
                 </Grid>
-
-                {/* Statistics and Recommendations Section */}
-                {/* Instructions:
-                    - Use the `Statistics` component to show key financial metrics.
-                    - Use the `Recommendations` component to display financial advice.
-                */}
-
                 {/* Charts Section */}
                 <AnalysisGraph />
                 {/* Instructions:
                     - Use the `AnalysisGraph` component to show a breakdown of income and expenses by category.
                     - Use the `BalanceOverTime` component to show the user's balance over time.
+                */}
+
+                {/* Statistics and Recommendations Section */}
+                <Recommendations />
+                <Statistics />
+                {/* Instructions:
+                    - Use the `Statistics` component to show key financial metrics.
+                    - Use the `Recommendations` component to display financial advice.
                 */}
 
                 {/* Recent Transactions Section */}
