@@ -42,7 +42,7 @@ function AnalysisGraph() {
     });
 
     return (
-        <Grid item xs={12} md={4} sx={{ mt: 4 }}>
+        <Grid item xs={12} md={4}>
             <Paper sx={{ padding: 2, boxShadow: 3, borderRadius: 2 }}>
                 <Typography variant="h6" gutterBottom>
                     Income vs. Expenses by Category

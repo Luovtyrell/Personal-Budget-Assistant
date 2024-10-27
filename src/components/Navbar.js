@@ -24,6 +24,11 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated }) => {
         navigate('/login');
     };
 
+    const getRandomAvatar = (email) => {
+        const randomNumber = email.length % 10;
+        return `https://i.pravatar.cc/150?img=${randomNumber + 1}`;
+    };
+
     return (
         <>
             <AppBar position="static">
@@ -72,7 +77,7 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated }) => {
                         <Tooltip title={user?.email || "User"} arrow>
                             <Avatar
                                 alt={user?.email || "User"}
-                                src={user?.avatarUrl || `https://i.pravatar.cc/150?img=${user?.id || 21}`}
+                                src={getRandomAvatar(user?.email)}
                                 sx={{ width: 40, height: 40, marginLeft: 2 }}
                             />
                         </Tooltip>
@@ -88,7 +93,7 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated }) => {
                     className="w-56"
                 >
                     <List>
-                    <h2 className="ml-4 p-5 text-2xl text-primary">Menu</h2>
+                        <h2 className="ml-4 p-5 text-2xl text-primary">Menu</h2>
                         {isAuthenticated ? (
                             <>
                                 <ListItem button component={Link} to="/">

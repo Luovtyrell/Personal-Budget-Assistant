@@ -20,3 +20,12 @@ export const deleteTransaction = (id) => {
     const updatedTransactions = currentTransactions.filter(transaction => transaction.id !== id);
     setTransactions(updatedTransactions); 
 };
+
+
+export const updateTransaction = (updatedTransaction) => {
+    const currentTransactions = transactionsStore.get();
+    const updatedTransactions = currentTransactions.map(transaction => 
+        transaction.id === updatedTransaction.id ? updatedTransaction : transaction
+    );
+    setTransactions(updatedTransactions);
+};

@@ -40,7 +40,6 @@ function Dashboard() {
                     - The ExportButton should export the transaction data as a CSV file.
                     - The DownloadProfilerData button should export profiler data in JSON format.
                 */}
-
                     {/* Totals Section */}
                     <Grid container spacing={4} sx={{ mt: 4 }}>
                         <Grid item xs={12} md={4}>
@@ -66,20 +65,19 @@ function Dashboard() {
                         <Grid item xs={12} md={4}>
                             <Paper sx={{ padding: 2, boxShadow: 3, borderRadius: 2 }}>
                                 <Typography variant="h6" gutterBottom>
-                                    Balance
+                                    Balance (€)
                                 </Typography>
                                 <Typography variant="h5" data-testid="balance">
-                                    {/* Show the balance */}
+                                    <p> {balance.toFixed(2)}</p>
                                 </Typography>
-                                {/* Instructions:
-                                - If the balance is negative, show a warning message.
-                                - Display a message or alert if the budget limit has been exceeded.
-                            */}
                             </Paper>
                         </Grid>
                     </Grid>
                     {/* Charts Section */}
-                    <AnalysisGraph />
+                    <Grid container spacing={4} sx={{ mt: 4 }}>
+                        <AnalysisGraph />
+                        <BalanceOverTime />
+                    </Grid>
                     <Recommendations />
                     <Statistics />
                     <Typography variant="h5" gutterBottom color="primary" sx={{ mt: 4 }}>

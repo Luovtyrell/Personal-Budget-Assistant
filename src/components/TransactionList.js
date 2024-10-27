@@ -74,13 +74,13 @@ function TransactionList() {
 
     return (
         <Box sx={{ mt: 4 }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" color="primary" gutterBottom>
                 Transaction List
             </Typography>
 
-            <Button 
-                variant="contained" 
-                color="primary" 
+            <Button
+                variant="contained"
+                color="primary"
                 onClick={() => setIsFormOpen(true)}
                 sx={{ mb: 2 }}
             >
@@ -162,15 +162,13 @@ function TransactionList() {
                     </TableBody>
                 </Table>
             </TableContainer>
-
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                <Pagination 
-                    count={pageCount} 
-                    page={page} 
-                    onChange={(event, value) => setPage(value)} 
+                <Pagination
+                    count={pageCount}
+                    page={page}
+                    onChange={(event, value) => setPage(value)}
                 />
             </Box>
-
             {isFormOpen && (
                 <TransactionForm
                     transactionToEdit={transactionToEdit}

@@ -22,7 +22,7 @@ const Footer = () => {
             </Box>
 
             <Box className="flex justify-center mt-2 mb-4">
-                <Typography>
+                <Typography color="info">
                     © {new Date().getFullYear()} Personal Finance Assistant
                 </Typography>
             </Box>
@@ -30,13 +30,13 @@ const Footer = () => {
             {/* Social media icons */}
             <Box className="flex justify-center mt-2 mb-4">
                 <IconButton component="a" href="https://facebook.com" target="_blank" aria-label="Facebook">
-                    <Facebook />
+                    <Facebook color="info" />
                 </IconButton>
                 <IconButton component="a" href="https://twitter.com" target="_blank" aria-label="Twitter">
-                    <Twitter />
+                    <Twitter color="info" />
                 </IconButton>
                 <IconButton component="a" href="https://instagram.com" target="_blank" aria-label="Instagram">
-                    <Instagram />
+                    <Instagram color="info" />
                 </IconButton>
             </Box>
         </Box>

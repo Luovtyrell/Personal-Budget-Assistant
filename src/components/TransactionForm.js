@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Select, MenuItem, InputLabel, FormControl, Grid, Box } from '@mui/material';
-import { addTransaction, setTransactions } from '../stores/transactionStore';
+import { addTransaction, updateTransaction } from '../stores/transactionStore';
 import { categoryKeywords } from '../constants/categoryKeywords';
 import { allCategories } from '../constants/categories';
 
@@ -18,6 +18,7 @@ function TransactionForm({ transactionToEdit, onClose }) {
 
     useEffect(() => {
         if (transactionToEdit) {
+            console.log("Editing transaction:", transactionToEdit);
             Object.keys(transactionToEdit).forEach(key => {
                 setValue(key, transactionToEdit[key]);
             });
@@ -50,9 +51,7 @@ function TransactionForm({ transactionToEdit, onClose }) {
         };
 
         if (transactionToEdit) {
-            setTransactions(currentTransactions => 
-                currentTransactions.map(t => t.id === transaction.id ? transaction : t)
-            );
+            updateTransaction(transaction);
         } else {
             addTransaction(transaction);
         }
@@ -87,7 +86,7 @@ function TransactionForm({ transactionToEdit, onClose }) {
                             <Controller
                                 name="amount"
                                 control={control}
-                                rules={{ 
+                                rules={{
                                     required: 'Amount is required',
                                     min: { value: 0, message: 'Amount must be positive' }
                                 }}
@@ -159,9 +158,6 @@ function TransactionForm({ transactionToEdit, onClose }) {
                                         type="date"
                                         fullWidth
                                         margin="normal"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
                                         error={!!error}
                                         helperText={error?.message}
                                     />
