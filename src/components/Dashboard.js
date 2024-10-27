@@ -82,7 +82,7 @@ function Dashboard() {
                     <AnalysisGraph />
                     <Recommendations />
                     <Statistics />
-                    <Typography variant="h5" gutterBottom color="primary" sx={{ mt: 2 }}>
+                    <Typography variant="h5" gutterBottom color="primary" sx={{ mt: 4 }}>
                         Recent transactions
                     </Typography>
                     <RecentTransactions transactions={transactions} />
