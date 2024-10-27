@@ -20,8 +20,7 @@ function RecentTransactions() {
         .slice(0, 5);
 
     return (
-        <div>
-            <h3 className='mt-4 mb-4 text-2xl'>Recent Transactions</h3>
+        <div className='mt-4 mb-4'>
             <TableContainer component={Paper}>
                 <Table size="small">
                     <TableHead>
