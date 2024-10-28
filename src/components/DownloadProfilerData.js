@@ -1,20 +1,31 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { Download as DownloadIcon } from '@mui/icons-material';
-import { profilerData } from '../utils/profilerData';
+import { useStore } from '@nanostores/react';
+import { transactionsStore } from '../stores/transactionStore';
 
-function DownloadProfilerData() {
-    // Handle download functionality
+function DownloadTransactionsData() {
+    const transactions = useStore(transactionsStore);
+
     const handleDownload = () => {
-        if (profilerData.length === 0) {
-            // - First, check if there is any profiler data available.
-            // - If there is no data, alert the user that there is nothing to download.
+        if (!transactions || transactions.length === 0) {
+            alert('No transaction data available to download.');
             return;
         }
 
-        // - If data is available, convert the data to a JSON format.
-        // - Create a Blob from the JSON string and generate a URL for the Blob.
-        // - Create a temporary link element to trigger the download.
+        // Convert the data to JSON format
+        const json = JSON.stringify(transactions, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'transactions_data.json');
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     };
 
     return (
@@ -24,9 +35,9 @@ function DownloadProfilerData() {
             startIcon={<DownloadIcon />}
             onClick={handleDownload}
         >
-            Download Profiler Data
+            Download Transactions Data
         </Button>
     );
 }
 
-export default DownloadProfilerData;
+export default DownloadTransactionsData;

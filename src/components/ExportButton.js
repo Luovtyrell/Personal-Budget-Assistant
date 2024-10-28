@@ -5,19 +5,32 @@ import PropTypes from 'prop-types';
 
 const ExportButton = React.memo(function ExportButton({ data, filename, headers, label }) {
     const handleExport = useCallback(() => {
-        // Convert data to CSV format
-        // Instructions:
-        // - Use the convertArrayOfObjectsToCSV function to convert the data array to a CSV string.
-        // - Create a Blob object with CSV content
-        // - Create a temporary link to download the file
+        // Data to CSV format
+        const csv = convertArrayOfObjectsToCSV();
+        if (!csv) return;
+
+        // CSV content
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+
+        link.href = url;
+        link.setAttribute('download', filename);
+        document.body.appendChild(link);
+        link.click();
+
     }, [data, filename, headers]);
 
     // Function to convert object array to CSV
-    // Instructions:
-    // - Implement logic to convert an array of objects into a CSV string.
-    // - Ensure the headers are used to extract the correct fields from each object in the data array.
     const convertArrayOfObjectsToCSV = () => {
-        // Implement the conversion logic here
+        if (!data || data.length === 0) return null;
+
+        const csvHeaders = headers.join(',');
+        const csvRows = data.map(row =>
+            headers.map(fieldName => JSON.stringify(row[fieldName] ?? '')).join(',')
+        );
+
+        return [csvHeaders, ...csvRows].join('\n');
     };
 
     return (
@@ -33,7 +46,6 @@ const ExportButton = React.memo(function ExportButton({ data, filename, headers,
     );
 });
 
-// Define types of props for better verification and documentation
 ExportButton.propTypes = {
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
     filename: PropTypes.string,
@@ -41,7 +53,6 @@ ExportButton.propTypes = {
     label: PropTypes.string,
 };
 
-// Define default props
 ExportButton.defaultProps = {
     filename: 'data.csv',
     label: 'Export CSV',

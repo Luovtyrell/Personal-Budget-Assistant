@@ -33,13 +33,7 @@ function Dashboard() {
                     <Typography variant="h3" gutterBottom color='primary'>
                         Financial Summary
                     </Typography>
-
-                    {/* Action Buttons Section */}
-                    {/* Instructions:
-                    - Add a section with ExportButton and DownloadProfilerData components.
-                    - The ExportButton should export the transaction data as a CSV file.
-                    - The DownloadProfilerData button should export profiler data in JSON format.
-                */}
+                    <DownloadProfilerData/>
                     {/* Totals Section */}
                     <Grid container spacing={4} sx={{ mt: 4 }}>
                         <Grid item xs={12} md={4}>

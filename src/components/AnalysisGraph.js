@@ -53,8 +53,8 @@ function AnalysisGraph() {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="Income" stackId="a" fill="#82ca9d" />
-                        <Bar dataKey="Expense" stackId="a" fill="#8884d8" />
+                        <Bar dataKey="Income" stackId="a" fill="#6dcf91" />
+                        <Bar dataKey="Expense" stackId="a" fill="#f56e6e" />
                     </BarChart>
                 </ResponsiveContainer>
             </Paper>

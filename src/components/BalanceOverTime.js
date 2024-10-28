@@ -22,7 +22,7 @@ function BalanceOverTime() {
     const data = sortedTransactions.map(transaction => {
         cumulativeBalance += transaction.amount;
         return {
-            date: new Date(transaction.date).toLocaleDateString(), 
+            date: new Date(transaction.date).toLocaleDateString(),
             Balance: cumulativeBalance,
         };
     });
@@ -38,7 +38,7 @@ function BalanceOverTime() {
                         <XAxis dataKey="date" />
                         <YAxis />
                         <Tooltip />
-                        <Line type="monotone" dataKey="Balance" stroke="#8884d8" />
+                        <Line type="monotone" dataKey="Balance" stroke="#007EAE" />
                     </LineChart>
                 </ResponsiveContainer>
             </Paper>
