@@ -1,188 +1,125 @@
-# 🏦 The Game is HackathON React Frontend Challenge ⚛️
+![Read Time](https://img.shields.io/badge/Read%20Time-4%20min-brightgreen?style=flat)
 
-Category   ➡️   Software
+# Personal budget assistant
 
-Subcategory   ➡️   React Frontend
+## The Game is HackathON React Frontend Challenge by Nuwe and CaixaBank Tech
 
-Difficulty   ➡️   Hard
+<div align="center">
+<img src="./public/demo/PersonalBudgetAssistantgif.gif" alt="personal budget assistant demo gif"></div>
 
----
+The Personal Budget Assistant is a web application designed to help users efficiently manage their personal finances. It allows users to track expenses, create budgets, and provides alerts and advices when spending limits are exceeded or you are saving up money.
 
-## 🌐 Background
+## Table of contents
 
-You have just joined CaixaBank Tech to work on an innovative personal finance assistant project as part of the CaixaBankNow and Imagin apps. Your task is to design and develop the frontend architecture that will allow users to easily manage their finances. The app will provide a seamless and responsive user experience, helping clients track their spending, set budgets, and visualize their financial health.
-
-Your role will be crucial in shaping the frontend of the platform, ensuring it is intuitive, scalable, and responsive across all devices. With your React expertise, you will be responsible for creating a robust and efficient user interface that will lay the groundwork for the app’s future development and feature enhancements.
-
-## 📂 Repository Structure
-
-```bash
-hackathon-caixabank-frontend-react-finassist/
-├── Detailed_info.md
-├── package.json
-├── package-lock.json
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
-├── README.md
-└── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── assets
-    │   ├── bgmaps.png
-    │   ├── caixabank-icon-blue.png
-    │   └── caixabank-icon.png
-    ├── components
-    │   ├── AlertBanner.js
-    │   ├── AnalysisGraph.js
-    │   ├── Analysis.js
-    │   ├── BalanceOverTime.js
-    │   ├── BudgetAlert.js
-    │   ├── Dashboard.js
-    │   ├── DownloadProfilerData.js
-    │   ├── ExportButton.js
-    │   ├── Footer.js
-    │   ├── ForgotPasswordPage.js
-    │   ├── LoginPage.js
-    │   ├── MonthlyChart.js
-    │   ├── Navbar.js
-    │   ├── NotificationPopup.js
-    │   ├── ProtectedRoute.js
-    │   ├── RecentTransactions.js
-    │   ├── Recommendations.js
-    │   ├── RegisterPage.js
-    │   ├── Settings.js
-    │   ├── Statistics.js
-    │   ├── SupportPage.js
-    │   ├── TransactionForm.js
-    │   ├── TransactionList.js
-    │   └── TransactionRow.js
-    ├── constants
-    │   ├── categories.js
-    │   └── categoryKeywords.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    ├── reportWebVitals.js
-    ├── setupTests.js
-    ├── stores
-    │   ├── authStore.js
-    │   ├── budgetAlertStore.js
-    │   ├── transactionStore.js
-    │   └── userSettingsStore.js
-    ├── theme.js
-    └── utils
-        ├── onRenderCallback.js
-        ├── profilerData.js
-        └── useLocalStorage.js
-```
-
-## 🎯 Tasks 
-
-1. **Task1**: Transaction Management (CRUD)  
-2. **Task2**: Budget Management and Alerts  
-3. **Task3**: Design and Layout with Material UI  
-4. **Task4**: Conditional Rendering  
-5. **Task5**: External API Handling  
-6. **Task6**: Componentization and Reusability  
-7. **Task7**: State Management with Nanostores  
-8. **Task8**: Data Visualization and Graphs  
-9. **Task9**: Unit and Integration Testing  
-10. **Task10**: Performance Optimization  
-11. **Task11**: Notifications and Alerts  
-12. **Task12**: Authentication and Route Protection  
-13. **Task13**: Password Recovery  
-14. **Task14**: Footer and Navbar  
-15. **Task15**: Utilities and Helpers
-
-### 📑 Detailed information about tasks
-
-You will find more detailed information about each of the tasks in the file [Detailed_info.md](./Detailed_info.md).
+1. [Introduction](#the-game-is-hackathon-react-frontend-challenge-by-nuwe-and-caixabank-tech)
+2. [Key Features](#key-features)
+3. [Technologies Used](#technologies-used)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Image Gallery and Features](#image-gallery-and-features)
+6. [Contributing](#contributing)
+8. [Author](#author)
 
 
-## 💫 Guides
+## Key features
 
-**⚠️As this is a hackathon, with more time than usual and we are competing, we have created a long challenge. It is crucial to get the app working in order to correct it, so it is important to manage time well and prioritise rather than trying to get everything done and the app not working when it is corrected.⚠️**
+- **User Authentication:** Users can sign up and log in to access their budget data.
+- **Budget Management:** Create and manage personalized budgets, with alerts for overspending.
+- **Data Visualization:**
+    - **Income vs. Expenses by Category:** This chart displays the comparison between income and expenses categorized by different spending types, helping users identify where they are allocating their funds.
 
-### General information
+    - **Balance Over Time:** This chart visualizes the user's balance over time, allowing users to track their financial progress and see trends in their income and expenses.
 
-**As this challenge is part of a hackathon, participants are free to modify anything they need to implement their solution. There are no limits of any kind, neither technological nor visual.**
+- **Notifications and Alerts:** Receive alerts when budget limits are exceeded globally and by category.
+- **CRUD Operations:** Create, Read, Update, and Delete transactions easily.
+    - **Filters in CRUD:** Filter transactions based on categories, dates, and amounts.
+- **Responsive Design:** The interface is designed to be fully responsive, adapting to different devices.
+- **Dark/Light Theme:** Switch between dark and light themes for a personalized experience.
+- **Download Transactions:** Export transactions data in JSON format.
+- **Trend Analysis:** Analyze spending trends over time and export data to CSV.
+- **Support Page:** Access support with direct email contact and API connection that fetch support contacts list.
+    - **Search bar:** Quickly find specific support contact.
 
-**A [deployed website](https://react-personal-finance-assistant.vercel.app) with all the functionalities to be created is provided so that participants have a clear reference of the expected performance.**
+## Technologies Used
 
-**It is possible to add as many functionalities as desired.**
-
-**The code provides a basis on which to work, and also contains comments that may be useful.**
-
-
-### Correction
-
-The correction will be done manually.
-
-Therefore, standards will have to be applied:
-
-- The execution will have to be: `npm i`, `npm start`. Any project that does not work properly when running these commands will not score.
-- To evaluate the purpose of the tests `npm test` will be run. If it does not work, this task will be scored as 0.
-- A small part of the score will be all visual. In this case the overall look and feel of the application will be evaluated, giving an extra score of 100 points.
-- By default the version of Node that will be used is **Node 20(LTS)**.
-
-## 📤 Submission
-
-1. Solve the proposed tasks.
-2. Continuously push the changes you have made.
-3. The last commit will be the one to be taken into account for manual correction.
-
-## 📊 Evaluation
-
-The final score will be given according to whether or not the objectives have been met.
-
-In this case, the challenge will be evaluated on 2250 (1750 for tasks, 400 for code quality and 100 for the visual part) points which are distributed as follows:
-
-- **Task 1**: 200 points
-- **Task 2**: 150 points
-- **Task 3**: 100 points
-- **Task 4**: 100 points
-- **Task 5**: 100 points
-- **Task 6**: 150 points
-- **Task 7**: 150 points
-- **Task 8**: 100 points
-- **Task 9**: 150 points
-- **Task 10**: 100 points
-- **Task 11**: 100 points
-- **Task 12**: 150 points
-- **Task 13**: 100 points
-- **Task 14**: 50 points
-- **Task 15**: 50 points
-- **Code quality**: 400 points
-- **Extra**: 100 points
-
-## ❓ Additional information
-
-**Q1: Can I change anything in the app?**
-
-A1: Yes, as it is a hackathon, you are free to modify anything within the project.
-
-**Q2: Can I add resources that are not in package.json?**
-
-A2: Yes, new resources can be added if necessary.
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black "React")](https://reactjs.org/)   [![Custom Hooks](https://img.shields.io/badge/Custom%20Hooks-61DAFB?style=flat&logo=react&logoColor=black "Custom Hooks")](https://reactjs.org/docs/hooks-custom.html)   [![PropTypes](https://img.shields.io/badge/PropTypes-5A29E4?style=flat&logo=react&logoColor=white "PropTypes")](https://reactjs.org/docs/typechecking-with-proptypes.html)   [![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=flat&logo=react-router&logoColor=white "React Router")](https://reactrouter.com/)   ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white "HTML5")   ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white "CSS3")   ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white "Tailwind CSS")   ![Material-UI](https://img.shields.io/badge/Material--UI-0081CB?style=flat&logo=mui&logoColor=white "Material-UI")   ![Recharts](https://img.shields.io/badge/Recharts-FF6384?style=flat&logo=chart&logoColor=white "Recharts")   ![Nanostores](https://img.shields.io/badge/Nanostores-4F5B93?style=flat&logo=nanostores&logoColor=white "Nanostores")   ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black "JavaScript")
 
 
 
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Luovtyrell/personal-budget-assistant.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd personal-budget-assistant
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+<br>
+
+## Usage
+
+1. **Registration**: To get started, register or alternatively, you can use the default credentials to log in.
+
+2. **Dashboard**: After logging in, you’ll access the dashboard where you can view a summary of your financial data, including your latest transactions, visual graphs and advices.
+
+3. **Transactions**: Navigate to the "Transactions" section to add, edit, or delete transactions. You can also filter transactions.
+
+4. **Trend Analysis**: In the "Analysis" section, you can observe trends in your income and expenses over time.
+
+5. **Settings**: In "Settings," you can set a total budget limit or budget limits for specific categories.
+
+6. **Support Page**: The "Support Page" provides contact information and you can search for a contact in the search bar.
 
 
+## Image Gallery and Features
 
+| **Image**                                                      | **Feature**                           |
+|-----------------------------------------------------------------|--------------------------------------|
+| <img src="./public/demo/financialSumary.png" alt="financialsumary" width="300"/> | **Financial Sumary**              |
+| <img src="./public/demo/recomendations.png" alt="recommendations" width="300"/>   | **Recommendations, key statics and recent transactions**           |
+| <img src="./public/demo/transactionsList.png" alt="transactions" width="300"/>       | **Transactions list CRUD and filters**         |
+| <img src="./public/demo/settings.png" alt="settings" width="300"/> | **Budget limit settings global or by category**        |
+| <img src="./public/demo/trendAnalysis.png" alt="trend" width="300"/>   | **Trend analysys (income and expenses trend)**                  |
+| <img src="./public/demo/supportContacts.png" alt="support" width="300"/> | **Support contact list and search bar**                  |
+| <img src="./public/demo/responsive.png" alt="responsive demo" width="300"/> | **Responsive layout**                  |
+| <img src="./public/demo/darkMode.png" alt="dark theme" width="300"/> | **Dark/light theme switcher**                  |
 
+<br><br>
 
+## Contributing
 
+If you'd like to contribute, please follow these steps:
 
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+5. Push to the branch (`git push origin feature/AmazingFeature`)
+6. Open a Pull Request
 
+<br>
 
+## Author
 
+[![Lucía Ordoñez Vilanova](https://avatars.githubusercontent.com/u/153511070?v=4&s=100 "Lucía Ordoñez Vilanova's GitHub Avatar")](https://github.com/Luovtyrell) <a href="https://www.github.com/Luovtyrell"> <br>
+<img src="https://img.shields.io/badge/LUCIA%20ORDO%C3%91EZ%20VILANOVA-gray?style=flat&color=ffdf0a"  height="30" alt="Made by Lucía Ordoñez Vilanova"/>
+</a>
 
-
-
+<a href="mailto:luciaorvilanova@gmail.com" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/Gmail-EA4335?logo=gmail&logoColor=fff&style=flat"  height="23" alt="Gmail" /></a> <a href="https://www.linkedin.com/in/luovtyrell" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=fff&style=flat" height="23" alt="LinkedIn" /></a> <a href="https://t.me/luovtyrell" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/Telegram-26A5E4?logo=telegram&logoColor=fff&style=flat" height="23" alt="Telegram" /></a> <a href="http://discordapp.com/users/664163194989707308" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=fff&style=flat" height="23" alt="Discord" /></a> 
