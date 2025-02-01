@@ -23,7 +23,7 @@ const Footer = () => {
 
             <Box className="flex justify-center mt-2 mb-4">
                 <Typography color="info">
-                    © {new Date().getFullYear()} Personal Finance Assistant
+                    © {new Date().getFullYear()} Lucía Ordoñez Vilanova
                 </Typography>
             </Box>
 
